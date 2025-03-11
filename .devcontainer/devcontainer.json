@@ -1,0 +1,23 @@
+{
+    "name": "Python Development Container",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "appPort": [5000], // Expone el puerto 5000 para tu aplicación (ajusta según tu proyecto)
+    "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash", // Usa bash como terminal
+      "python.pythonPath": "/usr/local/bin/python", // Ruta al intérprete de Python
+      "python.linting.enabled": true, // Habilita el linting de Python
+      "python.linting.pylintEnabled": true, // Habilita Pylint
+      "python.linting.flake8Enabled": true, // Habilita Flake8 (opcional)
+      "python.formatting.provider": "black" // Usa Black para formatear el código (opcional)
+    },
+    "extensions": [
+      "ms-python.python", // Extensión oficial de Python para VSCode
+      "ms-python.vscode-pylance", // Soporte para type checking (opcional)
+      "ms-python.black-formatter", // Soporte para Black (opcional)
+      "ms-azuretools.vscode-docker" // Soporte para Docker (opcional)
+    ],
+    "postCreateCommand": "pip install --upgrade pip ", // Instala dependencias al crear el contenedor
+    "forwardPorts": [5000] // Reenvía el puerto 5000 al host
+
+  }
