@@ -16,7 +16,11 @@ COPY . .
 
 # Instalamos las dependencias del proyecto
 RUN pip install --upgrade pip && \
+    pip install pytest pytest-mock && \
     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+# Configura Git para usar VSCode como editor predeterminado
+RUN git config --global core.editor "code --wait"
 
 # Expone el puerto 5000 (ajusta según tu aplicación)
 EXPOSE 5000
