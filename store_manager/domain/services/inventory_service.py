@@ -5,4 +5,4 @@ class InventoryService:
 
     def add_product(self, product):
         # Lógica de negocio (Responsabilidad Única - SOLID)
-        pass  # Implementación pendiente
+        self.repository.add(product)  # Delegamos la persistencia al repositorio
