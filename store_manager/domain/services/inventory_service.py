@@ -25,8 +25,31 @@ class InventoryService:
         Args:
             product (Product): El producto a verificar.
         """
-        if product.quantity <= product.min_stock:
-            self.alert_system.send_alert(
-                "Alerta de Stock Bajo",
-                f"El producto '{product.name}' tiene un stock bajo. Cantidad actual: {product.quantity}, Mínimo requerido: {product.min_stock}."
-            )
+        if self._is_stock_low(product):
+            self._send_low_stock_alert(product)
+
+    def _is_stock_low(self, product):
+        """
+        Verifica si el stock de un producto está por debajo del nivel mínimo.
+        
+        Args:
+            product (Product): El producto a verificar.
+        
+        Returns:
+            bool: True si el stock está por debajo del nivel mínimo, False en caso contrario.
+        """
+        return product.quantity <= product.min_stock
+
+    def _send_low_stock_alert(self, product):
+        """
+        Envía una alerta de stock bajo para un producto.
+        
+        Args:
+            product (Product): El producto para el cual se envía la alerta.
+        """
+        alert_title = "Alerta de Stock Bajo"
+        alert_message = (
+            f"El producto '{product.name}' tiene un stock bajo. "
+            f"Cantidad actual: {product.quantity}, Mínimo requerido: {product.min_stock}."
+        )
+        self.alert_system.send_alert(alert_title, alert_message)
