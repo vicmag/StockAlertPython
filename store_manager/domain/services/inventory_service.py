@@ -25,4 +25,8 @@ class InventoryService:
         Args:
             product (Product): El producto a verificar.
         """
-        pass  # Implementación pendiente
+        if product.quantity <= product.min_stock:
+            self.alert_system.send_alert(
+                "Alerta de Stock Bajo",
+                f"El producto '{product.name}' tiene un stock bajo. Cantidad actual: {product.quantity}, Mínimo requerido: {product.min_stock}."
+            )

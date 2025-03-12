@@ -1,4 +1,4 @@
- class AlertSystem:
+class AlertSystem:
     def send_alert(self, title, message):
         """
         Envía una alerta.
