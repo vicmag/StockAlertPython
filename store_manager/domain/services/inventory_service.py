@@ -2,8 +2,9 @@
 from store_manager.domain.models.product import Product  # Importar la clase Product
 
 class InventoryService:
-    def __init__(self, repository):
+    def __init__(self, repository, alert_system):
         self.repository = repository  # Inversión de Dependencias (SOLID)
+        self.alert_system = alert_system  # Inversión de Dependencias (SOLID)
 
     def add_product(self, product):
         """
@@ -16,3 +17,12 @@ class InventoryService:
             raise ValueError("El producto no es válido.")
         
         self.repository.add(product)  # Delegamos la persistencia al repositorio
+
+    def check_stock_and_alert(self, product):
+        """
+        Verifica el stock de un producto y envía una alerta si está por debajo del nivel mínimo.
+        
+        Args:
+            product (Product): El producto a verificar.
+        """
+        pass  # Implementación pendiente

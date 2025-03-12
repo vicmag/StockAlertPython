@@ -14,3 +14,13 @@ class InventoryRepository:
             raise ValueError("El producto no es válido.")
         
         self.products.append(product)
+
+    def update_stock(self, product, new_quantity):
+        """
+        Actualiza el stock de un producto.
+        
+        Args:
+            product (Product): El producto a actualizar.
+            new_quantity (int): La nueva cantidad de stock.
+        """
+        pass  # Implementación pendiente
