@@ -1,4 +1,5 @@
-
+from src.models.product import Product
+from src.services.product_service import ProductService
 
 class TestProductService:
     def test_increment_stock_should_update_product(self, mocker):
