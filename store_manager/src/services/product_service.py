@@ -5,5 +5,7 @@ class ProductService:
         self.repository = repository
 
     def increment_stock(self, name: str, increment: int) -> bool:
-        raise NotImplementedError("Fase Roja")
+        product = self.repository.find_by_name(name)
+        product.stock += increment
+        return self.repository.save(product)
         
