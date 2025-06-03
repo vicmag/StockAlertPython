@@ -27,3 +27,22 @@ class TestProductService:
         _, args, _ = mock_repository.save.mock_calls[0]
         assert args[0].stock == initial_stock + increment
 
+    def test_increment_stock_should_send_not_found_product_error(self, mocker):
+        #Arrange (configuración)
+        mock_repository = mocker.Mock()
+        nameProduct = "Producto_Inexistente"
+        initial_stock = 10
+        increment = 5
+        product = Product(name=nameProduct, stock=initial_stock)
+
+        # Configuración del comportamiento del mock
+        mock_repository.find_by_name.return_value = None
+        
+        service = ProductService(mock_repository)
+
+        #Act & Assert (ejecucción y validación)
+        with pytest.raises(ValueError, match="Producto no encontrado"):
+            service.increment_stock(nameProduct, increment)
+
+        
+
