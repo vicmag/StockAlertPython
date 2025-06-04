@@ -44,7 +44,7 @@ class TestProductService:
         with pytest.raises(ValueError, match="Producto no encontrado"):
             service.increment_stock(nameProduct, increment)
 
-    def test_increment_stock_should_fail_if_increment_is_not_positivo(self, mocker):
+    def test_increment_stock_should_fail_if_increment_is_negativo(self, mocker):
         # Arrange (configuración)
         mock_repository = mocker.Mock()
         nameProduct = "Camiseta"
