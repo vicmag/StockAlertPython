@@ -9,8 +9,8 @@ class ProductService:
         if product is None:
             raise ValueError("Producto no encontrado")
         
-        if increment < 0:
-            raise ValueError("El incremento no debe ser negativo")
+        if increment <= 0:
+            raise ValueError("El incremento debe ser positivo")
         product.stock += increment        
         return self.repository.save(product)
         
